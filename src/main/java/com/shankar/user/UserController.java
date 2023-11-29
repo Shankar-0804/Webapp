@@ -17,23 +17,23 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public UserDto create(@RequestBody UserDto userDto){
-        return userService.create(userDto);
+    public UserOutDto create(@RequestBody UserInDto userInDto){
+        return userService.create(userInDto);
     }
 
     @GetMapping
-    public List<UserDto> findAll(){
+    public List<UserOutDto> findAll(){
         return userService.findAll();
     }
 
     @GetMapping("{id}")
-    public UserDto find(@PathVariable long id){
+    public UserOutDto find(@PathVariable long id){
         return userService.find(id);
     }
 
     @PutMapping("{id}")
-    public UserDto update(@PathVariable long id, @RequestBody UserDto userDto){
-        return userService.update(id, userDto);
+    public UserOutDto update(@PathVariable long id, @RequestBody UserInDto userInDto){
+        return userService.update(id, userInDto);
     }
 
     @DeleteMapping("{id}")

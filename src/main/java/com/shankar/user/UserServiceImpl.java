@@ -17,30 +17,30 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public UserDto create(UserDto userDto) {
-        UserEntity userEntity = userMapper.mapDtoToEntity(userDto);
+    public UserOutDto create(UserInDto userInDto) {
+        UserEntity userEntity = userMapper.mapDtoToEntity(userInDto);
         UserEntity save = userRepository.save(userEntity);
         return userMapper.mapEntityToDto(save);
     }
 
     @Override
-    public List<UserDto> findAll() {
+    public List<UserOutDto> findAll() {
         List<UserEntity> userEntities = userRepository.findAll();
         return userMapper.mapEntitiesToDtos(userEntities);
     }
 
     @Override
-    public UserDto find(long id) {
+    public UserOutDto find(long id) {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(()
                 -> new UserException("Id Not Found"));
         return userMapper.mapEntityToDto(userEntity);
     }
 
     @Override
-    public UserDto update(long id, UserDto userDto) {
+    public UserOutDto update(long id, UserInDto userInDto) {
         UserEntity userEntity = userRepository.findById(id).orElseThrow(()
                 -> new UserException("Id Not Found"));
-        userMapper.mapDtoToExistingEntity(userDto, userEntity);
+        userMapper.mapDtoToExistingEntity(userInDto, userEntity);
         UserEntity saveUser = userRepository.save(userEntity);
         return userMapper.mapEntityToDto(saveUser);
     }

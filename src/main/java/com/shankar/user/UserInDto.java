@@ -3,8 +3,7 @@ package com.shankar.user;
 import lombok.Data;
 
 @Data
-public class UserDto {
-    private long id;
+public class UserInDto {
 
     private String name;
 
